@@ -1,5 +1,11 @@
 <mat-toolbar>
-  <img src="/assets/mercadona-logo.svg" alt="Mercadona"/>
+  <button mat-icon-button
+          matTooltip="Ir a la p&aacute;gina principal"
+          aria-label="Ir a la p&aacute;gina principal"
+          routerLink="/">
+    <img src="/assets/mercadona-logo.svg"
+         alt="Mercadona"/>
+  </button>
   <div class="flex-spacer"></div>
   <button *ngIf="!authService.username; else loggedUserTemplate"
           type="button"

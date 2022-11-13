@@ -26,7 +26,7 @@ export class AuthService {
             observer.complete();
           },
           mockDelayMillisecons,
-        )
+        );
       }
     );
   }

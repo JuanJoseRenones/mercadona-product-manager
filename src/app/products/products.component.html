@@ -1,0 +1,42 @@
+<div class="content-wrapper">
+  <h1>Productos</h1>
+  <div class="mat-elevation-z8">
+    <table mat-table
+           [dataSource]="tableDataSource" 
+           cdkDropList
+           cdkDropListOrientation="horizontal"
+           (cdkDropListDropped)="handleDrop($event)">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell cdkDrag *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let product">{{product.name}}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell cdkDrag *matHeaderCellDef>Precio</th>
+        <td mat-cell *matCellDef="let product">{{product.price | number:'1.0-2'}} &euro;</td>
+      </ng-container>
+      <ng-container matColumnDef="format">
+        <th mat-header-cell cdkDrag *matHeaderCellDef>Formato</th>
+        <td mat-cell *matCellDef="let product">{{product.format}}</td>
+      </ng-container>
+      <ng-container matColumnDef="brand">
+        <th mat-header-cell cdkDrag *matHeaderCellDef>Marca</th>
+        <td mat-cell *matCellDef="let product">{{product.brand}}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell cdkDrag *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let product">Borrar</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="tableColumnIds"></tr>
+      <tr mat-row *matRowDef="let row; columns: tableColumnIds;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Seleccionar p&aacute;gina de productos">
+    </mat-paginator>
+  </div>
+</div>
+
+<div *ngIf="shouldProgressSpinnerBeVisible"
+     class="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing">
+  <mat-spinner></mat-spinner>
+</div>

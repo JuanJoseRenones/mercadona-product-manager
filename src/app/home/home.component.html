@@ -5,5 +5,15 @@
     <mat-card-content>
       <p>{{productsToCheckNumber}} por revisar</p>
     </mat-card-content>
+    <mat-card-actions align="end"
+                      *ngIf="authService.username">
+      <button type="button"
+              mat-raised-button
+              color="primary"
+              routerLink="/products">
+        <mat-icon>visibility</mat-icon>
+        Revisar
+      </button>
+    </mat-card-actions>
   </mat-card>
 </div>
