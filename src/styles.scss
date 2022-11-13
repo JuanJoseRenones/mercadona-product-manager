@@ -38,6 +38,7 @@ $mercadona-product-manager-theme: mat.define-light-theme((
   --color-primary: #{mat.get-color-from-palette($mercadona-product-manager-primary)};
   --color-accent: #{mat.get-color-from-palette($mercadona-product-manager-accent)};
   --color-warn: #{mat.get-color-from-palette($mercadona-product-manager-warn)};
+  --color-panel: #{mat.get-color-from-palette(mat.$grey-palette, 100)};
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -61,4 +62,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.mat-card {
+  background-color: var(--color-panel);
+  .mat-card-title {
+    font-size: 18px;
+  }
 }
