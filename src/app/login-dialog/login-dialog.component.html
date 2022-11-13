@@ -1,0 +1,56 @@
+<form #dialogForm="ngForm"
+      (submit)="login()">
+  <h1 mat-dialog-title>Iniciar sesi&oacute;n</h1>
+  <div mat-dialog-content
+       class="login-dialog-content">
+    <p>Introduzca sus credenciales:</p>
+    <mat-form-field appearance="outline"
+                    hideRequiredMarker="true">
+      <mat-label>Usuario</mat-label>
+      <input #usernameInput
+              type="text"
+              name="username"
+              [(ngModel)]="username"
+              matInput
+              required>
+      <mat-error *ngIf="usernameInput.validationMessage">{{usernameInput.validationMessage}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline"
+                    hideRequiredMarker="true">
+      <mat-label>Contrase&ntilde;a</mat-label>
+      <input #passwordInput
+              [type]="shouldHidePassword ? 'password' : 'text'"
+              name="password"
+              [(ngModel)]="password"
+              matInput
+              required>
+      <button mat-icon-button matSuffix
+              type="button"
+              [matTooltip]="shouldHidePassword ? 'Mostrar' : 'Ocultar'"
+              [attr.aria-label]="shouldHidePassword ? 'Mostrar' : 'Ocultar'"
+              [attr.aria-pressed]="shouldHidePassword"
+              (click)="shouldHidePassword = !shouldHidePassword">
+        <mat-icon>{{shouldHidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="passwordInput.validationMessage">{{passwordInput.validationMessage}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button type="button"
+            mat-raised-button
+            (click)="close()">
+      Cancelar
+    </button>
+    <button type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!dialogForm.valid">
+      Acceder
+    </button>
+  </div>
+</form>
+
+<div *ngIf="shouldProgressSpinnerBeVisible"
+     class="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing">
+  <mat-spinner></mat-spinner>
+</div>

@@ -1,4 +1,24 @@
 <mat-toolbar>
   <img src="/assets/mercadona-logo.svg" alt="Mercadona"/>
+  <div class="flex-spacer"></div>
+  <span>{{authService.username}}</span>
+  <button *ngIf="!authService.username; else loggedUserTemplate"
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="openLoginDialog()">
+    Iniciar sesi&oacute;n
+  </button>
+  <ng-template #loggedUserTemplate>
+    <span>{{authService.username}}</span>
+    <button mat-icon-button
+            type="submit"
+            color="primary"
+            matTooltip="Cerrar sesi&oacute;n"
+            aria-label="Cerrar sesi&oacute;n"
+            (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </ng-template>
 </mat-toolbar>
 <router-outlet></router-outlet>
