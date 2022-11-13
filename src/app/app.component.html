@@ -1,7 +1,6 @@
 <mat-toolbar>
   <img src="/assets/mercadona-logo.svg" alt="Mercadona"/>
   <div class="flex-spacer"></div>
-  <span>{{authService.username}}</span>
   <button *ngIf="!authService.username; else loggedUserTemplate"
           type="button"
           mat-raised-button
