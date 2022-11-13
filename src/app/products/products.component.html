@@ -1,7 +1,8 @@
 <div class="content-wrapper">
   <h1>Productos</h1>
   <div class="mat-elevation-z8">
-    <table mat-table
+    <table class="products-table"
+           mat-table
            [dataSource]="tableDataSource" 
            cdkDropList
            cdkDropListOrientation="horizontal"
@@ -12,7 +13,7 @@
       </ng-container>
       <ng-container matColumnDef="price">
         <th mat-header-cell cdkDrag *matHeaderCellDef>Precio</th>
-        <td mat-cell *matCellDef="let product">{{product.price | number:'1.0-2'}} &euro;</td>
+        <td mat-cell *matCellDef="let product">{{product.price | number:'1.2'}} &euro;</td>
       </ng-container>
       <ng-container matColumnDef="format">
         <th mat-header-cell cdkDrag *matHeaderCellDef>Formato</th>

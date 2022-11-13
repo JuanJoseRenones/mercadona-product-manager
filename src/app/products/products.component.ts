@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, AfterViewInit {
+export class ProductsComponent implements OnInit {
 
   /** Table column identifiers */
   public readonly tableColumnIds: string[] = ['name', 'price', 'format', 'brand'];
@@ -29,11 +29,6 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     this.getProducts();
   }
 
-  /** After component view initialization */
-  public ngAfterViewInit(): void {
-    this.tableDataSource.paginator = this.paginator;
-  }
-
   /** Drop event handler */
   public handleDrop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.tableColumnIds, event.previousIndex, event.currentIndex);
@@ -44,10 +39,10 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     this.shouldProgressSpinnerBeVisible = true;
     // TODO: Get from back end when endpoint is available
     const products: Product[] = [];
-    for (let i: number = 1; i < 50; i++) {
+    for (let i: number = 1; i <= 50; i++) {
       products.push({
         name: `Producto ${i}`,
-        price: parseFloat(`${i}.${i}${i}`),
+        price: parseFloat(`${i}.${i}`),
         format: `Formato ${i}`,
         brand: `Marca ${i}`
       });
@@ -58,6 +53,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
         this.tableData.length = 0
         this.tableData.push(...products);
         this.shouldProgressSpinnerBeVisible = false;
+        this.tableDataSource.paginator = this.paginator;
       },
       mockDelayMillisecons,
     );
